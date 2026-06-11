@@ -705,7 +705,7 @@ export async function refreshFreeOneMinuteCall(userId) {
       userId,
       result: {
         name: datingUserTarget.name,
-        target: "免费一分钟才发",
+        target: "免费一分钟通话",
         affectedRows: updateResult.affectedRows,
         changedRows: updateResult.changedRows,
         beforeRefreshAt: before?.refreshAt ?? null,
