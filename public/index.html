@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vidate</title>
+    <link rel="stylesheet" href="/styles.css?v=20260611-content-subtabs">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="平台目录">
+        <div class="brand-block">
+          <p class="eyebrow">Test Data Platform</p>
+          <h1>vidate</h1>
+        </div>
+
+        <nav class="directory">
+          <a class="directory-item active" href="#walletOperation" data-tab="walletOperation" aria-current="page">
+            <span class="directory-icon" aria-hidden="true">¥</span>
+            <span>用户金币更改</span>
+          </a>
+          <a class="directory-item" href="#memberSubscription" data-tab="memberSubscription">
+            <span class="directory-icon" aria-hidden="true">V</span>
+            <span>订阅会员</span>
+          </a>
+          <a class="directory-item" href="#sayhiData" data-tab="sayhiData">
+            <span class="directory-icon" aria-hidden="true">S</span>
+            <span>sayhi</span>
+          </a>
+          <a class="directory-item" href="#iosPackageStatus" data-tab="iosPackageStatus">
+            <span class="directory-icon" aria-hidden="true">i</span>
+            <span>iOS包是否在架</span>
+          </a>
+          <a class="directory-item" href="#videoInviteCard" data-tab="videoInviteCard">
+            <span class="directory-icon" aria-hidden="true">卡</span>
+            <span>下发视频邀请卡</span>
+          </a>
+          <a class="directory-item" href="#freeOneMinuteCall" data-tab="freeOneMinuteCall">
+            <span class="directory-icon" aria-hidden="true">1</span>
+            <span>免费一分钟才发</span>
+          </a>
+          <a class="directory-item" href="#streamerPpvAudit" data-tab="streamerPpvAudit">
+            <span class="directory-icon" aria-hidden="true">P</span>
+            <span>主播pp审核</span>
+          </a>
+          <a class="directory-item" href="#anchorPassword" data-tab="anchorPassword">
+            <span class="directory-icon" aria-hidden="true">密</span>
+            <span>设置主播账户密码</span>
+          </a>
+          <a class="directory-item" href="#auditStatus" data-tab="auditStatus">
+            <span class="directory-icon" aria-hidden="true">审</span>
+            <span>更改防审核状态</span>
+          </a>
+        </nav>
+
+        <div class="status" id="runtimeStatus">连接检查中</div>
+      </aside>
+
+      <main class="content">
+        <section class="panel operation-panel tool-panel active" id="walletOperation" data-panel="walletOperation">
+          <div class="section-title">
+            <p class="eyebrow">Wallet Operation</p>
+            <h2>用户金币更改</h2>
+          </div>
+
+          <div class="subtabs" role="tablist" aria-label="用户金币操作">
+            <a class="subtab-button active" href="#walletOperation-addWalletCoins" data-subtab="addWalletCoins" role="tab" aria-selected="true">增加用户金币</a>
+            <a class="subtab-button" href="#walletOperation-clearWalletCoins" data-subtab="clearWalletCoins" role="tab" aria-selected="false">清空用户金币</a>
+          </div>
+
+          <div class="subtab-panel active" data-subtab-panel="addWalletCoins" role="tabpanel">
+            <form id="walletForm" class="form">
+              <div class="form-grid">
+                <label class="field">
+                  <span>UID</span>
+                  <input id="userId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入uid" required>
+                </label>
+
+                <label class="field">
+                  <span>目标余额</span>
+                  <input id="balance" name="balance" inputmode="numeric" autocomplete="off" placeholder="请输入目标余额" required>
+                </label>
+              </div>
+
+              <button id="submitButton" class="primary-button" type="submit">执行更新</button>
+            </form>
+          </div>
+
+          <div class="subtab-panel" data-subtab-panel="clearWalletCoins" role="tabpanel">
+            <form id="walletClearForm" class="form">
+              <label class="field">
+                <span>UID</span>
+                <input id="clearWalletUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入uid" required>
+              </label>
+
+              <button id="clearWalletButton" class="primary-button" type="submit">清空金币</button>
+            </form>
+          </div>
+        </section>
+
+        <section class="panel result-panel tool-panel active" id="resultPanel" data-panel="walletOperation">
+          <div class="section-title">
+            <p class="eyebrow">Execution Result</p>
+            <h2>执行结果</h2>
+          </div>
+
+          <div id="result" class="empty-state">暂无执行记录</div>
+        </section>
+
+        <section class="panel operation-panel tool-panel placeholder-panel" id="memberSubscription" data-panel="memberSubscription">
+          <div class="section-title">
+            <p class="eyebrow">Member Subscription</p>
+            <h2>订阅会员</h2>
+          </div>
+
+          <form id="memberSubscriptionForm" class="form">
+            <div class="form-grid">
+              <label class="field">
+                <span>UID</span>
+                <input id="memberUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入uid" required>
+              </label>
+
+              <label class="field">
+                <span>Duration</span>
+                <input id="memberDuration" name="duration" inputmode="numeric" autocomplete="off" placeholder="请输入时长如84600秒为一天" required>
+              </label>
+            </div>
+
+            <button id="memberSubscriptionButton" class="primary-button" type="submit">开通会员</button>
+          </form>
+
+          <div id="memberSubscriptionResult" class="empty-state query-result">暂无执行记录</div>
+        </section>
+
+        <section class="panel operation-panel tool-panel placeholder-panel" id="sayhiData" data-panel="sayhiData">
+          <div class="section-title">
+            <p class="eyebrow">Sayhi Data</p>
+            <h2>sayhi</h2>
+          </div>
+
+          <div class="subtabs" role="tablist" aria-label="sayhi数据操作">
+            <a class="subtab-button active" href="#sayhiData-querySayhi" data-subtab="querySayhi" role="tab" aria-selected="true">查询已sayhi数据</a>
+            <a class="subtab-button" href="#sayhiData-deleteSayhi" data-subtab="deleteSayhi" role="tab" aria-selected="false">删除sayhi数据</a>
+            <a class="subtab-button" href="#sayhiData-clearSayhi" data-subtab="clearSayhi" role="tab" aria-selected="false">增加sayhi</a>
+          </div>
+
+          <div class="subtab-panel active" data-subtab-panel="querySayhi" role="tabpanel">
+            <form id="sayhiQueryForm" class="form">
+              <label class="field">
+                <span>UID</span>
+                <input id="sayhiQueryUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入uid" required>
+              </label>
+
+              <button id="querySayhiButton" class="primary-button" type="submit">查询数据</button>
+            </form>
+
+            <div id="sayhiQueryResult" class="empty-state query-result">暂无查询记录</div>
+          </div>
+
+          <div class="subtab-panel" data-subtab-panel="deleteSayhi" role="tabpanel">
+            <form id="deleteSayhiForm" class="form">
+              <label class="field">
+                <span>user_id</span>
+                <input id="deleteSayhiUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入uid" required>
+              </label>
+
+              <button id="deleteSayhiButton" class="primary-button" type="submit">删除sayhi数据</button>
+            </form>
+
+            <div id="deleteSayhiResult" class="empty-state query-result">暂无执行记录</div>
+          </div>
+
+          <div class="subtab-panel" data-subtab-panel="clearSayhi" role="tabpanel">
+            <form id="sayhiCountForm" class="form">
+              <div class="form-grid">
+                <label class="field">
+                  <span>UID</span>
+                  <input id="sayhiCountUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入uid" required>
+                </label>
+
+                <label class="field">
+                  <span>Count</span>
+                  <input id="sayhiCount" name="count" inputmode="numeric" autocomplete="off" placeholder="请输入需要增加的sayhi次数" required>
+                </label>
+              </div>
+
+              <button id="sayhiCountButton" class="primary-button" type="submit">更新sayhi次数</button>
+            </form>
+
+            <div id="sayhiCountResult" class="empty-state query-result">暂无执行记录</div>
+          </div>
+        </section>
+
+        <section class="panel operation-panel tool-panel placeholder-panel" id="videoInviteCard" data-panel="videoInviteCard">
+          <div class="section-title">
+            <p class="eyebrow">Video Invite Card</p>
+            <h2>下发视频邀请卡</h2>
+          </div>
+
+          <form id="videoInviteCardForm" class="form">
+            <div class="form-grid">
+              <label class="field">
+                <span>用户 UID</span>
+                <input id="inviteCardUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入用户uid" required>
+              </label>
+
+              <label class="field">
+                <span>主播 UID</span>
+                <input id="inviteCardStreamerId" name="streamerId" inputmode="numeric" autocomplete="off" placeholder="请输入主播uid" required>
+              </label>
+
+              <label class="field">
+                <span>主播 token</span>
+                <input id="inviteCardStreamerToken" name="streamerToken" type="password" autocomplete="off" placeholder="请输入主播token" required>
+              </label>
+            </div>
+
+            <button id="videoInviteCardButton" class="primary-button" type="submit">下发邀请卡</button>
+          </form>
+
+          <div id="videoInviteCardResult" class="empty-state query-result">暂无执行记录</div>
+        </section>
+
+        <section class="panel operation-panel tool-panel placeholder-panel" id="freeOneMinuteCall" data-panel="freeOneMinuteCall">
+          <div class="section-title">
+            <p class="eyebrow">Free One Minute</p>
+            <h2>免费一分钟才发</h2>
+          </div>
+
+          <form id="freeOneMinuteCallForm" class="form">
+            <label class="field">
+              <span>userid</span>
+              <input id="freeOneMinuteUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入uid" required>
+            </label>
+
+            <button id="freeOneMinuteButton" class="primary-button" type="submit">刷新免费一分钟</button>
+          </form>
+
+          <div id="freeOneMinuteResult" class="empty-state query-result">暂无执行记录</div>
+        </section>
+
+        <section class="panel operation-panel tool-panel placeholder-panel" id="streamerPpvAudit" data-panel="streamerPpvAudit">
+          <div class="section-title">
+            <p class="eyebrow">Streamer PP Audit</p>
+            <h2>主播pp审核</h2>
+          </div>
+
+          <form id="streamerPpvAuditForm" class="form">
+            <div class="form-grid">
+              <label class="field">
+                <span>主播 UID</span>
+                <input id="streamerPpvUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入主播uid" required>
+              </label>
+
+              <label class="field">
+                <span>审核状态</span>
+                <select id="streamerPpvStatus" name="status" required>
+                  <option value="200" selected>审核通过</option>
+                  <option value="300">审核拒绝</option>
+                </select>
+              </label>
+
+              <label class="field">
+                <span>审核数量</span>
+                <input id="streamerPpvCount" name="count" inputmode="numeric" autocomplete="off" placeholder="请输入需要审核几张成功" required>
+              </label>
+            </div>
+
+            <button id="streamerPpvAuditButton" class="primary-button" type="submit">审核</button>
+          </form>
+
+          <div id="streamerPpvAuditResult" class="empty-state query-result">暂无执行记录</div>
+        </section>
+
+        <section class="panel operation-panel tool-panel placeholder-panel" id="iosPackageStatus" data-panel="iosPackageStatus">
+          <div class="section-title">
+            <p class="eyebrow">iOS Package</p>
+            <h2>iOS包是否在架</h2>
+          </div>
+
+          <form id="iosPackageForm" class="form">
+            <label class="field">
+              <span>app_name</span>
+              <input id="iosPackageAppName" name="app_name" autocomplete="off" placeholder="请输入app_name" required>
+            </label>
+
+            <button id="iosPackageButton" class="primary-button" type="submit">查询状态</button>
+          </form>
+
+          <div id="iosPackageResult" class="empty-state query-result">暂无查询记录</div>
+        </section>
+
+        <section class="panel operation-panel tool-panel placeholder-panel" id="anchorPassword" data-panel="anchorPassword">
+          <div class="section-title">
+            <p class="eyebrow">Anchor Password</p>
+            <h2>设置主播账户密码</h2>
+          </div>
+
+          <form id="anchorPasswordForm" class="form">
+            <label class="field">
+              <span>主播 UID</span>
+              <input id="anchorPasswordUserId" name="userId" inputmode="numeric" autocomplete="off" placeholder="请输入主播uid" required>
+            </label>
+
+            <button id="anchorPasswordButton" class="primary-button" type="submit">设置密码</button>
+          </form>
+
+          <div id="anchorPasswordResult" class="empty-state query-result">暂无执行记录</div>
+        </section>
+
+        <section class="panel operation-panel tool-panel placeholder-panel" id="auditStatus" data-panel="auditStatus">
+          <div class="section-title">
+            <p class="eyebrow">Audit Status</p>
+            <h2>更改防审核状态</h2>
+          </div>
+
+          <form id="auditStatusForm" class="form">
+            <div class="form-grid">
+              <label class="field">
+                <span>appname</span>
+                <input id="auditAppName" name="appname" autocomplete="off" placeholder="请输入appname" required>
+              </label>
+
+              <label class="field">
+                <span>防审核状态</span>
+                <select id="auditedAt" name="auditedAt" required>
+                  <option value="0">审核模式</option>
+                  <option value="1">非审核模式</option>
+                </select>
+              </label>
+            </div>
+
+            <button id="auditStatusButton" class="primary-button" type="submit">更新状态</button>
+          </form>
+
+          <div id="auditStatusResult" class="empty-state query-result">暂无执行记录</div>
+        </section>
+      </main>
+    </div>
+
+    <script src="/app.js?v=20260611-content-subtabs" type="module"></script>
+  </body>
+</html>
